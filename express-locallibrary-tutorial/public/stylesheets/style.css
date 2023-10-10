@@ -1,5 +1,140 @@
-.sidebar-nav {
-  margin-top: 20px;
+/* Estilos gerais */
+body {
+  background-color: #f0f0f0; /* Cor de fundo pastel */
+  font-family: "Arial", sans-serif; /* Fonte sans-serif moderna */
+  color: #444; /* Cor de texto um pouco mais escura */
+  margin: 0;
   padding: 0;
-  list-style: none;
+  line-height: 1.6;
+}
+
+/* Adicionando gradiente de fundo */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    135deg,
+    #ffeaa7,
+    #81ecec
+  ); /* Gradiente de cores pastéis */
+  z-index: -1;
+}
+
+/* Atualizando animação de fundo */
+@keyframes backgroundAnimation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+/* Estilos para h1 */
+h1 {
+  color: #fd79a8; /* Cor pastel destacada */
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+/* Estilos para links */
+a {
+  color: #00cec9; /* Cor pastel para links */
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #6c5ce7; /* Cor de destaque para links quando passar o mouse */
+}
+
+/* Estilos para a barra lateral */
+.sidebar-nav li {
+  padding: 10px;
+  list-style-type: none;
+  color: #777; /* Cor de texto mais escura para a barra lateral */
+  border-bottom: 1px solid #ccc;
+  transition: background-color 0.3s;
+}
+
+.sidebar-nav li:last-child {
+  border-bottom: none;
+}
+
+.sidebar-nav li:hover {
+  background-color: #dfe6e9; /* Cor pastel de destaque ao passar o mouse */
+}
+
+/* Estilos para parágrafos */
+p {
+  color: #777; /* Cor de texto mais escura para parágrafos */
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+/* Estilos para elementos enfatizados (em) */
+em {
+  font-style: italic;
+  color: #ff7675; /* Cor pastel destacada para elementos enfatizados */
+}
+
+/* Estilos para lista não ordenada (ul) */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Estilos para elementos de lista (li) */
+li {
+  color: #444; /* Cor de texto um pouco mais escura para listas */
+  margin-left: 20px;
+  position: relative;
+  line-height: 1.4;
+}
+
+li::before {
+  content: "\2022";
+  position: absolute;
+  left: -15px;
+  color: #fd79a8; /* Cor pastel destacada para marcadores de lista */
+}
+
+/* Estilos para elementos fortes (strong) */
+strong {
+  font-weight: bold;
+}
+
+/* Estilos para botões */
+button.btn.btn-primary {
+  background-color: #fd79a8; /* Cor pastel destacada para botões */
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+}
+
+button.btn.btn-primary:hover {
+  background-color: #ff7675; /* Cor pastel de destaque para botões ao passar o mouse */
+}
+
+/* Estilo para citação de livro */
+blockquote {
+  border-left: 4px solid #fd79a8; /* Cor pastel destacada para citações de livro */
+  padding-left: 20px;
+  font-style: italic;
+  font-size: 18px;
+  margin: 20px 0;
+}
+
+/* Estilos para elementos de lista com ícones de livros */
+li.book-item {
+  list-style-image: url("caminho/para/seu-icone-de-livro-pequeno.png");
+  padding-left: 30px;
 }

@@ -1,8 +1,9 @@
 extends layout
-
 block content
+
+
   h1= title
-  
+
   ul
     each book in book_list
       li
@@ -10,4 +11,4 @@ block content
         |  (#{book.author.name})
 
     else
-      li There are no books.
+      li Não há mais livros.
