@@ -17,13 +17,13 @@ exports.index = asyncHandler(async (req, res, next) => {
   ] = await Promise.all([
     Book.countDocuments({}).exec(),
     BookInstance.countDocuments({}).exec(),
-    BookInstance.countDocuments({ status: "Available" }).exec(),
+    BookInstance.countDocuments({ status: "Disponível" }).exec(),
     Author.countDocuments({}).exec(),
     Author.countDocuments({}).exec(),
   ]);
 
   res.render("index", {
-    title: "Local Library Home",
+    title: "Home",
     book_count: numBooks,
     book_instance_count: numBookInstances,
     book_instance_available_count: numAvailableBookInstances,
@@ -39,7 +39,7 @@ exports.book_list = asyncHandler(async (req, res, next) => {
     .populate("author")
     .exec();
 
-  res.render("book_list", { title: "Book List", book_list: allBooks });
+  res.render("book_list", { title: "Lista de livros", book_list: allBooks });
 });
 
 // Display detail page for a specific book.
@@ -52,7 +52,7 @@ exports.book_detail = asyncHandler(async (req, res, next) => {
 
   if (book === null) {
     // No results.
-    const err = new Error("Book not found");
+    const err = new Error("Livro não encontrado");
     err.status = 404;
     return next(err);
   }
@@ -73,7 +73,7 @@ exports.book_create_get = asyncHandler(async (req, res, next) => {
   ]);
 
   res.render("book_form", {
-    title: "Create Book",
+    title: "Criar livro",
     authors: allAuthors,
     genres: allGenres,
   });
@@ -91,19 +91,19 @@ exports.book_create_post = [
   },
 
   // Validate and sanitize fields.
-  body("title", "Title must not be empty.")
+  body("title", "Título não pode ser nulo.")
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  body("author", "Author must not be empty.")
+  body("author", "Autor não pode ser nulo.")
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  body("summary", "Summary must not be empty.")
+  body("summary", "Sumário não pode ser nulo.")
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  body("isbn", "ISBN must not be empty").trim().isLength({ min: 1 }).escape(),
+  body("isbn", "ISBN não pode ser nulo").trim().isLength({ min: 1 }).escape(),
   body("genre.*").escape(),
   // Process request after validation and sanitization.
 
@@ -136,7 +136,7 @@ exports.book_create_post = [
         }
       }
       res.render("book_form", {
-        title: "Create Book",
+        title: "Criar livro",
         authors: allAuthors,
         genres: allGenres,
         book: book,
@@ -163,7 +163,7 @@ exports.book_delete_get = asyncHandler(async (req, res, next) => {
   }
 
   res.render("book_delete", {
-    title: "Delete Book",
+    title: "Deletar livro",
     book: book,
     book_instances: bookInstances,
   });
@@ -186,7 +186,7 @@ exports.book_delete_post = asyncHandler(async (req, res, next) => {
   if (bookInstances.length > 0) {
     // Book has book_instances. Render in same way as for GET route.
     res.render("book_delete", {
-      title: "Delete Book",
+      title: "Deletar livro",
       book: book,
       book_instances: bookInstances,
     });
@@ -209,7 +209,7 @@ exports.book_update_get = asyncHandler(async (req, res, next) => {
 
   if (book === null) {
     // No results.
-    const err = new Error("Book not found");
+    const err = new Error("Livro não encontrado");
     err.status = 404;
     return next(err);
   }
@@ -224,7 +224,7 @@ exports.book_update_get = asyncHandler(async (req, res, next) => {
   }
 
   res.render("book_form", {
-    title: "Update Book",
+    title: "Atualizar livro",
     authors: allAuthors,
     genres: allGenres,
     book: book,
@@ -246,18 +246,15 @@ exports.book_update_post = [
   },
 
   // Validate and sanitize fields.
-  body("title", "Title must not be empty.")
+  body("title", "Título não pode ser nulo.")
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  body("author", "Author must not be empty.")
+  body("author", "Autor não pode ser nulo.")
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  body("summary", "Summary must not be empty.")
-    .trim()
-    .isLength({ min: 1 })
-    .escape(),
+  body("summary", "Sumário ").trim().isLength({ min: 1 }).escape(),
   body("isbn", "ISBN must not be empty").trim().isLength({ min: 1 }).escape(),
   body("genre.*").escape(),
 
@@ -292,7 +289,7 @@ exports.book_update_post = [
         }
       }
       res.render("book_form", {
-        title: "Update Book",
+        title: "Atualizar livro",
         authors: allAuthors,
         genres: allGenres,
         book: book,

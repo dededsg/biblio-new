@@ -8,7 +8,7 @@ const asyncHandler = require("express-async-handler");
 exports.author_list = asyncHandler(async (req, res, next) => {
   const allAuthors = await Author.find().sort({ family_name: 1 }).exec();
   res.render("author_list", {
-    title: "Author List",
+    title: "Lista de autores",
     author_list: allAuthors,
   });
 });
@@ -23,13 +23,13 @@ exports.author_detail = asyncHandler(async (req, res, next) => {
 
   if (author === null) {
     // No results.
-    const err = new Error("Author not found");
+    const err = new Error("Autor não encontrado");
     err.status = 404;
     return next(err);
   }
 
   res.render("author_detail", {
-    title: "Author Detail",
+    title: "Detalhes do autor",
     author: author,
     author_books: allBooksByAuthor,
   });
@@ -37,7 +37,7 @@ exports.author_detail = asyncHandler(async (req, res, next) => {
 
 // Display Author create form on GET.
 exports.author_create_get = (req, res, next) => {
-  res.render("author_form", { title: "Create Author" });
+  res.render("author_form", { title: "Criar Autor" });
 };
 
 // Handle Author create on POST.
@@ -47,21 +47,21 @@ exports.author_create_post = [
     .trim()
     .isLength({ min: 1 })
     .escape()
-    .withMessage("First name must be specified.")
+    .withMessage("O primeiro nome deve ser especififcado.")
     .isAlphanumeric()
-    .withMessage("First name has non-alphanumeric characters."),
+    .withMessage("O primeiro nome não deve ter caracteres especiais e números"),
   body("family_name")
     .trim()
     .isLength({ min: 1 })
     .escape()
-    .withMessage("Family name must be specified.")
+    .withMessage("O sobrenome deve ser especificado")
     .isAlphanumeric()
-    .withMessage("Family name has non-alphanumeric characters."),
-  body("date_of_birth", "Invalid date of birth")
+    .withMessage("O sobrenome não deve ter caracteres especiais e números"),
+  body("date_of_birth", "Data de nascimento inválida")
     .optional({ values: "falsy" })
     .isISO8601()
     .toDate(),
-  body("date_of_death", "Invalid date of death")
+  body("date_of_death", "Data de óbito inválida")
     .optional({ values: "falsy" })
     .isISO8601()
     .toDate(),
@@ -71,7 +71,7 @@ exports.author_create_post = [
     // Extract the validation errors from a request.
     const errors = validationResult(req);
 
-    // Create Author object with escaped and trimmed data
+    // Criar Autor object with escaped and trimmed data
     const author = new Author({
       first_name: req.body.first_name,
       family_name: req.body.family_name,
@@ -82,7 +82,7 @@ exports.author_create_post = [
     if (!errors.isEmpty()) {
       // There are errors. Render form again with sanitized values/errors messages.
       res.render("author_form", {
-        title: "Create Author",
+        title: "Criar Autor",
         author: author,
         errors: errors.array(),
       });
@@ -112,7 +112,7 @@ exports.author_delete_get = asyncHandler(async (req, res, next) => {
   }
 
   res.render("author_delete", {
-    title: "Delete Author",
+    title: "Deletar autor",
     author: author,
     author_books: allBooksByAuthor,
   });
@@ -129,7 +129,7 @@ exports.author_delete_post = asyncHandler(async (req, res, next) => {
   if (allBooksByAuthor.length > 0) {
     // Author has books. Render in same way as for GET route.
     res.render("author_delete", {
-      title: "Delete Author",
+      title: "Deletar autor",
       author: author,
       author_books: allBooksByAuthor,
     });
@@ -146,12 +146,12 @@ exports.author_update_get = asyncHandler(async (req, res, next) => {
   const author = await Author.findById(req.params.id).exec();
   if (author === null) {
     // No results.
-    const err = new Error("Author not found");
+    const err = new Error("Autor não encontrado");
     err.status = 404;
     return next(err);
   }
 
-  res.render("author_form", { title: "Update Author", author: author });
+  res.render("author_form", { title: "Atualizar autor", author: author });
 });
 
 // Handle Author update on POST.
@@ -161,21 +161,21 @@ exports.author_update_post = [
     .trim()
     .isLength({ min: 1 })
     .escape()
-    .withMessage("First name must be specified.")
+    .withMessage("O primeiro nome deve ser especififcado.")
     .isAlphanumeric()
-    .withMessage("First name has non-alphanumeric characters."),
+    .withMessage("O primeiro nome não deve ter caracteres especiais e números"),
   body("family_name")
     .trim()
     .isLength({ min: 1 })
     .escape()
-    .withMessage("Family name must be specified.")
+    .withMessage("O sobrenome deve ser especificado")
     .isAlphanumeric()
-    .withMessage("Family name has non-alphanumeric characters."),
-  body("date_of_birth", "Invalid date of birth")
+    .withMessage("O sobrenome não deve ter caracteres especiais e números"),
+  body("date_of_birth", "Data de nascimento inválida")
     .optional({ values: "falsy" })
     .isISO8601()
     .toDate(),
-  body("date_of_death", "Invalid date of death")
+  body("date_of_death", "Data de óbito inválida")
     .optional({ values: "falsy" })
     .isISO8601()
     .toDate(),
@@ -185,7 +185,7 @@ exports.author_update_post = [
     // Extract the validation errors from a request.
     const errors = validationResult(req);
 
-    // Create Author object with escaped and trimmed data (and the old id!)
+    // Criar Autor object with escaped and trimmed data (and the old id!)
     const author = new Author({
       first_name: req.body.first_name,
       family_name: req.body.family_name,
@@ -197,7 +197,7 @@ exports.author_update_post = [
     if (!errors.isEmpty()) {
       // There are errors. Render the form again with sanitized values and error messages.
       res.render("author_form", {
-        title: "Update Author",
+        title: "Atualizar autor",
         author: author,
         errors: errors.array(),
       });
