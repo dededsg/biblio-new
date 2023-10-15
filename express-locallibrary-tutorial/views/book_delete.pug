@@ -4,11 +4,11 @@ block content
   h1 #{title}: #{book.title}
 
   p
-    strong Author:
+    strong Autor:
     a(href=book.author.url) #{book.author.name}
 
   p
-    strong Summary:
+    strong Sumário:
     | #{book.summary}
 
   p
@@ -16,7 +16,7 @@ block content
     | #{book.isbn}
 
   p
-    strong Genre:
+    strong Gênero:
     each val in book.genre
       a(href=val.url) #{val.name},
     
@@ -29,7 +29,7 @@ block content
 
     div(style='margin-left:20px;margin-top:20px')
 
-      h4 Copies
+      h4 Cópias
 
       each book_copy in book_instances
         hr
@@ -40,11 +40,11 @@ block content
         else
           p.text-warning #{book_copy.status}
         p
-          strong Imprint:
+          strong Imprimir:
           | #{book_copy.imprint}
         if book_copy.status!='Available'
           p
-            strong Due back:
+            strong Devolver:
             | #{book_copy.due_back}
         p
           strong Id:

@@ -2,14 +2,14 @@ extends layout
 block content
 
 
-  h1 Title: #{book.title}
+  h1 Título: #{book.title}
 
   p
-    strong Author:
+    strong Autor:
     a(href=book.author.url) #{book.author.name}
 
   p
-    strong Summary:
+    strong Sumário:
     | #{book.summary}
 
   p
@@ -17,7 +17,7 @@ block content
     | #{book.isbn}
 
   p
-    strong Genre:
+    strong Gênero:
     each val, index in book.genre
       a(href=val.url) #{val.name}
       if index < book.genre.length - 1
