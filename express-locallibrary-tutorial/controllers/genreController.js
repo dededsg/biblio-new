@@ -18,7 +18,7 @@ exports.genre_detail = asyncHandler(async (req, res, next) => {
   // Get details of genre and all associated books (in parallel)
   const [genre, booksInGenre] = await Promise.all([
     Genre.findById(req.params.id).exec(),
-    Book.find({ genre: req.params.id }, "Título do sumário").exec(),
+    Book.find({ genre: req.params.id }, "title summary").exec(),
   ]);
   if (genre === null) {
     // No results.
