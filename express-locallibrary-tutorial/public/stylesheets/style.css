@@ -18,8 +18,8 @@ body::before {
   height: 100%;
   background-image: linear-gradient(
     135deg,
-    #1942f8,
-    #09a3a3
+    #5271fd,
+    #093ff3
   ); /* Gradiente de cores pastéis */
   z-index: -1;
 }
@@ -36,27 +36,27 @@ body::before {
 
 /* Estilos para h1 */
 h1 {
-  color: #4610c4; /* Cor pastel destacada */
+  color: #000000; /* Cor pastel destacada */
   font-size: 36px;
   margin-bottom: 20px;
 }
 
 /* Estilos para links */
 a {
-  color: #027e7c; /* Cor pastel para links */
+  color: #0b003b; /* Cor pastel para links */
   text-decoration: none;
   transition: color 0.3s;
 }
 
 a:hover {
-  color: #1e0ab4; /* Cor de destaque para links quando passar o mouse */
+  color: #1700c7; /* Cor de destaque para links quando passar o mouse */
 }
 
 /* Estilos para a barra lateral */
 .sidebar-nav li {
   padding: 10px;
   list-style-type: none;
-  color: #777; /* Cor de texto mais escura para a barra lateral */
+  color: #000000; /* Cor de texto mais escura para a barra lateral */
   border-bottom: 1px solid #ccc;
   transition: background-color 0.3s;
 }
@@ -66,12 +66,12 @@ a:hover {
 }
 
 .sidebar-nav li:hover {
-  background-color: #dfe6e9; /* Cor pastel de destaque ao passar o mouse */
+  background-color: #333333; /* Cor pastel de destaque ao passar o mouse */
 }
 
 /* Estilos para parágrafos */
 p {
-  color: #777; /* Cor de texto mais escura para parágrafos */
+  color: #000000; /* Cor de texto mais escura para parágrafos */
   margin-bottom: 20px;
   font-size: 16px;
 }
@@ -90,7 +90,7 @@ ul {
 
 /* Estilos para elementos de lista (li) */
 li {
-  color: #444; /* Cor de texto um pouco mais escura para listas */
+  color: #242222; /* Cor de texto um pouco mais escura para listas */
   margin-left: 20px;
   position: relative;
   line-height: 1.4;
@@ -112,7 +112,7 @@ strong {
 button.btn.btn-primary {
   background-color: #051eaf; /* Cor pastel destacada para botões */
   border: none;
-  color: #fff;
+  color: #0e0341;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
